@@ -13,11 +13,13 @@
 
 // Use the 'let' keyword to define a constant
 let maximumNumberOfLoginAttempts = 10
+let pipi = 3.14159
 
 // Use the 'var' keyword to define a variable
 //
 // Tip: only use variables when you need a stored value that changes. Otherwise, prefer constants.
 var currentLoginAttempt = 0
+var radius = 5.5
 
 // Constants cannot change. This line wouldn't compile:
 // maximumNumberOfLoginAttempts = 9
@@ -33,6 +35,7 @@ currentLoginAttempt += 1
 // You can combine them on a single line with a comma
 let a = 10, b = 20, c = 30
 var x = 0.0, y = 0.0, z = 0.0
+let ii = 1, dd = 5.5
 
 // Specifying the type with type annotations
 //
@@ -46,13 +49,23 @@ var x = 0.0, y = 0.0, z = 0.0
 // Here's how you specify the type. If we didn't specify the type as Double, tye type would have
 // been inferred to be Int.
 var SomeDouble: Double = 4
+let myName: String
+myName = "Kevin"
+
+print(myName)
+print(myName, myName, separator: "_", terminator:"!")
+
+var red, green, blue, black: Double
+red = 0
+
+// Prefer using type infer over explict type annotations
 
 // Constant & Variable names cannot contain any mathematical symbols, arrows private-use (or
 // invalid) Unicode code points or line-and-box drawing characters. Nor can they begin with a
 // number. Otherwise, it's open season for naming your variables! (yes, really!)
 //
 // Here are some oddly named, but perfectly valid, constants:
-let π = 3.14159
+let π = 3.14159 // these are bad names
 let 你好 = "你好世界"
 let 🐶🐮 = "dogcow"
 
@@ -77,7 +90,7 @@ print("The current value of fiveHundred is: \(fiveHundred)")
 //
 // However, sometimes it would be convenient to do so and Swift provides a means to enable this
 // by surrounding the identifier with backticks (`). Here's an example:
-let `let` = 42.0
+let `let` = 42.0 // Don't do this
 
 // We can now use `let` like any normal variable:
 x = `let`
