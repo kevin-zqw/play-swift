@@ -133,6 +133,23 @@ myConstant
     }
 */
 
+// this is a one line comment
+/*
+Comment start
+
+/* nested multiple comment is OK, and it's very handy to comment some code you don't need
+let a = 1
+let b = 2
+let c = 3
+*/
+
+Comment End
+ */
+
+// String interpolation
+let friendlyWelcome = "Hello World"
+print("The current value of friendlyWelcome is \(friendlyWelcome)")
+
 // ------------------------------------------------------------------------------------------------
 // Semicolons
 //
@@ -144,6 +161,10 @@ var foo2 = 0; // optional semicolon
 // However, if you want to put two lines of code on one line, you'll need the semicolon to separate
 // them.
 foo1 = 1; foo2 = 2
+
+// Semicolons is not required, and Swift perfer not to use them
+// But multiple statements on the same line, you must use semicolons to separate them
+let dog1 = 1; print(dog1)
 
 // ------------------------------------------------------------------------------------------------
 // Integers
@@ -168,12 +189,25 @@ UInt8.max
 Int32.min
 Int32.max
 
+Int.max
+UInt.max
+UInt8.max
+UInt16.max
+UInt32.max
+UInt64.max
+
+// Always use Int for integer values unless you need specific size of integer
+// Use UInt only when you specifically need an unsigned integer type;
+
 // ------------------------------------------------------------------------------------------------
 // Floating point numbers
 //
 // Double is a 64-bit floating point numbers and Float is a 32-bit floating point number
 let pi: Double = 3.14159
 let pie: Float = 100 // ... becase it's 100% delicious!
+
+// Use Double perfer Float please, Double has at least 15 decimal digits, 
+// whereas Float can be as little as 6 decimal digits
 
 // ------------------------------------------------------------------------------------------------
 // Type Safety and Type Inference
@@ -184,8 +218,13 @@ let pie: Float = 100 // ... becase it's 100% delicious!
 // Integer literals are inferred to be Int
 let someInt = 1234
 
+// Swift is a type-safe language, this enables you to catch and fix errors as early as possible in the development process.
+
+// But you can use Swift's type inference to declare variables and constants
+// Type inference is useful, and you should always this feature
+
 // Floating point literals are always inferred to be Double
-let someDouble = 1234.56
+let someDouble = 1234.56 // this is a Double
 
 // If you want a Float instead, you must use type annotation
 let someFloat: Float = 1234.56
@@ -196,6 +235,8 @@ let someString = "This will be a String"
 // Here's a bool
 let someBool = true
 
+let anotherPi = 3 + 0.14159 // this is also a Double
+
 // These lines won't compile because we are specifying a type that doesn't match the given value
 // let someBool: Bool = 19
 // let someInteger: Int = "45"
@@ -205,10 +246,12 @@ let someBool = true
 // Numeric literals
 //
 // You can specify numbers in a few interesting ways
-let decimalInteger = 17
+let decimalInteger = 17 // decimal number
 let binaryInteger = 0b10001 // 17 in binary notation
 let octalInteger = 0o21 // ...also 17 (Octal, baby!)
 let hexInteger = 0x11 // ...and 17 in Hexidecimal
+
+// 0b, 0o, 0x, sometimes are useful, but you won't use them very much
 
 // Floating point numbers can be specified in a few different ways as well. Here are a few raw
 // examples (not assigned to variables):
@@ -222,6 +265,8 @@ let hexInteger = 0x11 // ...and 17 in Hexidecimal
 000123.456 // Zero padding
 0__123.456 // Underscores are just ignored
 
+// padding zero is not very useful, but underscore is a good feature
+
 // Numeric type conversion
 
 // A number that won't fit in the given type will not compile
@@ -232,6 +277,15 @@ let hexInteger = 0x11 // ...and 17 in Hexidecimal
 let simpleInt = 2_000 // Int
 let twoThousand: UInt16 = 2_000 // Specified as UInt16
 let one: UInt8 = 1 // Specified as UInt8
+
+// These are not allowed, Swift doesn't allow overflow
+//let cannotBeNegative: UInt8 = -1
+//let tooBig: Int8 = 300
+
+// Integer and Float pointing must be convert explicted
+let mythree = 3
+let mypointOneFourOneFiveNine = 0.14159
+let pipipi = Double(mythree) + mypointOneFourOneFiveNine
 
 // This will infer a UInt16 based on the types of both operands
 let twoThousandAndOne = twoThousand + UInt16(one)

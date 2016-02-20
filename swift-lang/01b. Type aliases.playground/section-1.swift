@@ -20,3 +20,9 @@ struct MySimpleStruct
 typealias MyAliasedName = MySimpleStruct
 MyAliasedName.a
 
+// Type Aliases define an alternative name for an existing type
+// It's useful when you want to refer to an existing type by a name that is contextually more appropriate
+typealias AudioSampleAgain = UInt16
+
+var mySample = AudioSampleAgain.min
+
