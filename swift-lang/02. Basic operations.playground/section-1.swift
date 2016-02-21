@@ -107,3 +107,70 @@ if (true && false) || !(false && true)
 {
 	"true"
 }
+
+// Swift support most standard C operators and improves several capabilities to eliminate common coding errors.
+// The assignment operator (=) does not return a value, to prevent it from being mistakenly used when the equal to operator (==) is intended.
+// Arithmetic operators (+, -, *, /, % and so forth) detect and disallow value overflow, to avoid unexpected results when working with numbers that become larger or smaller than the allowed value range of the type that stores them.
+// You can use Swift's overflow operators: &+, &-, &*
+
+// Swift lets you perform remainder (%) calculations on floating-point numbers.
+
+let bb = 10
+var aa = 5
+a = b
+
+// Tuples can decomposed into multiple constants or variables at once:
+let (xx, yy) = (1, 2)
+
+// Assignment operator does not return a value, so it can't be used in if statement
+// This is error
+//if x = y {
+//}
+
+1 + 2
+5 - 3
+5.5 + 3
+10 / 2.5
+
+// + can also concatenation Strings
+"Hello" + " " + "World"
+
+// To determine the answer for a % b, the % operator calculates the following equation and returns remainder as its output:
+// a = (b X some multiplier) + remainder
+// where some multiplier is the largest number of multiples of b that will fit inside a.
+
+9 % 4
+// 9 = (4 X 2) + 1
+
+-9 % 4
+// -9 = (4 X -2) + -1
+
+// The sign of b is ignored for negative values of b. This means that a % b and a % -b always give the same answer.
+
+8 % 2.5 // equals 0.5
+
+1 == 2
+1 != 2
+1 > 2
+1 < 2
+1 >= 2
+1 <= 2
+
+// Swift also provides two identity operators: === !==, which you use to test whether two object references both refer to the same object instance.
+
+// Ternary conditional operator
+// question ? answer1 : answer2
+
+// Nil Coalescing Operator
+// a ?? b unwraps an optional a if it contains a value, or returns a default value b if a is nil
+// a != nil ? a! : b
+
+let defaultColorName = "red"
+var userDefinedColorName: String?
+var colorNameToUse = userDefinedColorName ?? defaultColorName
+
+// Range Operators
+1...5 // Closed
+1..<5 // Half-Open
+
+
