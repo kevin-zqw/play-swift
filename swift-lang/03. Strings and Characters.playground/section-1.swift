@@ -21,9 +21,19 @@ var str: String = "Albatross! Get your albatross here!"
 "\u{2665}"     // Double-byte unicode
 "\u{0001F49c}" // Four-byte unicode
 
+// \u{n} where n is a 1-8 digit hexadecimal number with a value equal to a valid Unicode code point
+
 // Initializing an empty string - these are equivalent to each other
 var emptyString = ""
 var anotherEmptyString = String()
+emptyString.isEmpty
+
+// var String can be mutated
+// let String cannot be mutated
+
+// String are value types, assignment or pass to a function will copy this String
+
+// Swift's compiler will optimize string copy only when absolutely necessary. There is no performance problem with String copying
 
 // Use 'isEmpty' to check for empty String
 if emptyString.isEmpty
@@ -44,14 +54,23 @@ somefunc(originalString)
 originalString // not modified
 
 // You can iterate over a string like this:
-for character in originalString
+for character in originalString.characters
 {
 	character
 }
 
+let exclamationMark: Character = "!"
+let catCharacters: [Character] = ["C", "a", "t", "!"]
+let catString = String(catCharacters)
+catString + String(exclamationMark)
+originalString.append(exclamationMark)
+
 // Characters use double-quotes to specify them, so you must be explicit if you want a Character
 // instead of a String:
 var notAString: Character = "t"
+
+let eAcute: Character = "\u{e9}"
+let combinedEAcute: Character = "\u{65}\u{301}"
 
 // There is no length or count member of string, you have to use the global function,
 // countElements()
@@ -64,7 +83,13 @@ var notAString: Character = "t"
 // based on the number of 16-bit code units within the string’s UTF-16 representation and not the
 // number of Unicode characters within the string. To reflect this fact, the length property from
 // NSString is called utf16count when it is accessed on a Swift String value.”
-countElements(originalString)
+//countElements(originalString)
+originalString.characters.count
+originalString.startIndex
+originalString.endIndex.predecessor()
+
+originalString.insert("f", atIndex: originalString.endIndex)
+originalString.insertContentsOf("hello".characters, at: originalString.endIndex.predecessor())
 
 // Strings can be concatenated with strings and characters
 var helloworld = "hello, " + "world"
