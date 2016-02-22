@@ -16,11 +16,15 @@
 //   array.
 // ------------------------------------------------------------------------------------------------
 
+// Array, Set, Dictionary are struct, so variable is mutable, constant is mmutable.
+
 // Create an array of Strings
 var someArray = Array<String>()
+var myArray = Array<Int>(count: 3, repeatedValue: 1)
 
 // Shorter, more common way to define an array of Strings
-var shorter: [String]
+var shorter: [String] = []
+shorter = [String]()
 
 // This is an array literal. Since all members are of type String, this will create a String array.
 //
@@ -35,6 +39,32 @@ var commonPets: [String] = ["Cats", "Dogs"]
 //
 // The folowing is an array of Strings
 var shoppingList = ["Eggs", "Milk"]
+
+var bigArray = [1, 2, 3] + [4, 5, 6]
+bigArray.count
+bigArray.isEmpty
+bigArray.append(7)
+bigArray.appendContentsOf([8, 9, 10])
+bigArray += [12, 99]
+
+bigArray[11]
+
+bigArray[10] = 0
+bigArray[0...3] = []
+bigArray
+
+bigArray.insert(1000, atIndex: 0)
+bigArray.removeAtIndex(0)
+bigArray.removeLast()
+bigArray.removeFirst()
+
+for item in bigArray {
+    print(item)
+}
+
+for (index, value) in bigArray.enumerate() {
+    print(index, value)
+}
 
 // ------------------------------------------------------------------------------------------------
 // Accessing and modifying an Array
@@ -89,7 +119,7 @@ for item in shoppingList
 
 // We can also use the the enumerate() method to return a tuple containing the index and value
 // for each element:
-for (index, value) in enumerate(shoppingList)
+for (index, value) in shoppingList.enumerate()
 {
 	index
 	value
