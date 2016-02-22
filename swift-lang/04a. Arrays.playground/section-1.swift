@@ -193,3 +193,19 @@ a
 b
 c
 
+// Set
+var mySet: Set<Int> = [1, 1, 2, 3]
+mySet.count
+mySet.first
+mySet.insert(100)
+mySet.remove(2)
+mySet
+mySet.contains(2)
+
+for item in mySet {
+    print(item)
+}
+
+for item in mySet.sort() {
+    print(item)
+}
