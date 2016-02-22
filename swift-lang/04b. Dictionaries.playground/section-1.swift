@@ -30,6 +30,35 @@ var players: Dictionary<String, String> = ["Who" : "First", "What" : "Second"]
 // values, so type inference works in our favor allowing us to avoid the type annotation:
 let inferredDictionary = ["TYO": "Tokyo", "DUB": "Dublin"]
 
+let myDict: Dictionary<Int, Int> = [Int: Int]()
+var myDict2 = ["hello": "world", "haha": "xixi"]
+
+myDict2.count
+myDict2.isEmpty
+myDict2["fuck"]
+myDict2["hello"]
+
+myDict2["fuck"] = "hh"
+myDict2["hello"] = nil
+myDict2
+
+myDict2 = [:]
+
+let oldValue = myDict2.updateValue("Kevin", forKey: "fuck")
+myDict2
+
+for (key, value) in myDict2 {
+    print("\(key) -> \(value)")
+}
+
+for key in myDict2.keys {
+    print(key)
+}
+
+for value in myDict2.values {
+    print(value)
+}
+
 // ------------------------------------------------------------------------------------------------
 // Accessing and modifying a Dictionary
 //
