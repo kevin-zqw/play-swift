@@ -24,14 +24,26 @@ func sayHello(personName: String) -> String
 	return "Hello, \(personName)"
 }
 
+func mySayHello(name: String) -> String {
+    return "Hello, \(name)"
+}
+
 // If we call the function, we'll receive the greeting
 sayHello("Peter Parker")
+
+mySayHello("Kevin Zhang")
 
 // Multiple input parameters are separated by a comma
 func halfOpenRangeLength(start: Int, end: Int) -> Int
 {
 	return end - start
 }
+
+func addTwoNumbs(a: Int, b: Int) -> Int {
+    return a + b
+}
+
+addTwoNumbs(1, b: 2)
 
 // A function with no parameters simply has an empty set of parenthesis following the function
 // name:
@@ -56,10 +68,14 @@ func sayGoodbyeToMyLittleFriend(name: String)
 // Functions can return Tuples, which enable them to return multiple values.
 //
 // The following function simply returns two hard-coded strings.
-func getApplicationNameAndVersion() -> (String, String)
+func getApplicationNameAndVersion() -> (appName: String, version: String)
 {
 	return ("Modaferator", "v1.0")
 }
+
+let nameVersion = getApplicationNameAndVersion()
+nameVersion.appName
+nameVersion.version
 
 // Since the return value is a Tuple, we can use the Tuple's naming feature to name the values
 // being returned:
@@ -70,6 +86,35 @@ func getApplicationInfo() -> (name: String, version: String)
 var appInfo = getApplicationInfo()
 appInfo.name
 appInfo.version
+
+func safeMinMax(array: [Int]) -> (min:Int, max: Int)? {
+    if array.isEmpty {
+        return nil
+    }
+    
+    return (1, 2)
+}
+
+var aaa = safeMinMax([])
+print(aaa.dynamicType)
+
+if let (mm, nn) = safeMinMax([]) {
+    print(mm, nn)
+}
+
+// By default, the first parameter omits its external name, and the second and subsequent parameters use their local name as their external name. All parameters must have unique local names. Although it's possible for multiple parameters to have the same external name, unique external names help make your code more readable.
+func withExternalParameters(first f: String, second s: String, third t: String) {
+    print(f, s, t)
+}
+
+withExternalParameters(first: "1", second: "2", third: "3")
+
+// use _ to omit external parameter names, the first parameter is no external name by default
+func noExternalParameters(f: String, _ s: String, _ t: String) {
+    print(f, s, t)
+}
+
+noExternalParameters("1", "2", "3")
 
 // ------------------------------------------------------------------------------------------------
 // External Parameter Names
@@ -87,7 +132,7 @@ addSeventeen(toNumber: 42)
 //
 // The following declaration creates an internal parameter named "action" as well as an external
 // parameter named "action":
-func kangaroosCan(#action: String) -> String
+func kangaroosCan(action action: String) -> String
 {
 	return "A Kangaroo can \(action)"
 }
@@ -108,7 +153,7 @@ func addMul(firstAdder: Int, secondAdder: Int, multiplier: Int = 1) -> Int
 }
 
 // We can call with just two parameters to add them together
-addMul(1, 2)
+addMul(1, secondAdder: 2)
 
 // Default parameter values and external names
 //
@@ -119,7 +164,7 @@ addMul(1, 2)
 //
 // Therefore, when calling the function and specifying a value for the defaulted parameter, we
 // must provide the default parameter's external name:
-addMul(1, 2, multiplier: 9)
+addMul(1, secondAdder: 2, multiplier: 9)
 
 // We can opt out of the automatic external name for default parameter values by specify an
 // external name of "_" like so:
@@ -129,10 +174,10 @@ func anotherAddMul(firstAdder: Int, secondAdder: Int, _ multiplier: Int = 1) -> 
 }
 
 // Here, we call without the third parameter as before:
-anotherAddMul(1, 2)
+anotherAddMul(1, secondAdder: 2)
 
 // And now we can call with an un-named third parameter:
-anotherAddMul(1, 2, 9)
+anotherAddMul(1, secondAdder: 2, 9)
 
 // ------------------------------------------------------------------------------------------------
 // Variadic Parameters
@@ -184,12 +229,12 @@ anotherArithmeticMean()
 // of it.) Also, you can see why Swift attempts to enforce the use of external parameter names for
 // default parameter values. In this case, it helps us recognize where the defalt parameters leave
 // off and the variadic parameters begin:
-anotherArithmeticMean(initialTotal: 1)
-anotherArithmeticMean(initialTotal: 1, 2)
-anotherArithmeticMean(initialTotal: 1, 2, 3)
-anotherArithmeticMean(initialTotal: 1, 2, 3, 4)
-anotherArithmeticMean(initialTotal: 1, 2, 3, 4, 5)
-anotherArithmeticMean(initialTotal: 1, 2, 3, 4, 5, 6)
+anotherArithmeticMean(1)
+anotherArithmeticMean(1, numbers: 2)
+anotherArithmeticMean(1, numbers: 2, 3)
+anotherArithmeticMean(1, numbers: 2, 3, 4)
+anotherArithmeticMean(3, numbers: 4, 5)
+anotherArithmeticMean(1, numbers: 2, 3, 4, 5, 6)
 
 // Variadic parameters with external parameter names only apply their external name to the first
 // variadic parameter specified in the function call (if present.)
@@ -206,12 +251,12 @@ func yetAnotherArithmeticMean(initialTotal: Double = 0, values numbers: Double..
 // And here we can see the impact on the function call of adding the external name "values" to the
 // variadic parameter:
 yetAnotherArithmeticMean()
-yetAnotherArithmeticMean(initialTotal: 1)
-yetAnotherArithmeticMean(initialTotal: 1, values: 2)
-yetAnotherArithmeticMean(initialTotal: 1, values: 2, 3)
-yetAnotherArithmeticMean(initialTotal: 1, values: 2, 3, 4)
-yetAnotherArithmeticMean(initialTotal: 1, values: 2, 3, 4, 5)
-yetAnotherArithmeticMean(initialTotal: 1, values: 2, 3, 4, 5, 6)
+yetAnotherArithmeticMean(1)
+yetAnotherArithmeticMean(1, values: 2)
+yetAnotherArithmeticMean(1, values: 2, 3)
+yetAnotherArithmeticMean(1, values: 2, 3, 4)
+yetAnotherArithmeticMean(1, values: 2, 3, 4, 5)
+yetAnotherArithmeticMean(1, values: 2, 3, 4, 5, 6)
 
 // ------------------------------------------------------------------------------------------------
 // Constant and variable parameters
@@ -219,16 +264,24 @@ yetAnotherArithmeticMean(initialTotal: 1, values: 2, 3, 4, 5, 6)
 // All function parameters are constant by default. To make them variable, add the var introducer:
 func padString(var str: String, pad: Character, count: Int) -> String
 {
-	str = Array(count: count, repeatedValue: pad) + str
+	str = String(count: count, repeatedValue: pad) + str
 	return str
 }
 
 var paddedString = "padded with dots"
-padString(paddedString, ".", 10)
+padString(paddedString, pad: ".", count: 10)
 
 // Note that the function does not modify the caller's copy of the string that was passed in
 // because the value is still passed by value:
 paddedString
+
+func testArrayInOut(inout array: [Int]) {
+    array = [1, 1, 1, 1]
+}
+
+var myArray = [1, 2, 3]
+testArrayInOut(&myArray)
+myArray
 
 // ------------------------------------------------------------------------------------------------
 // In-Out Parameters
@@ -314,7 +367,7 @@ func doDoMul(doMulFunc: (Int, Int) -> Int, a: Int, b: Int) -> Int
 
 // We can now pass the function (along with a couple parameters to call it with) to another
 // function:
-doDoMul(doMul, 5, 5)
+doDoMul(doMul, a: 5, b: 5)
 
 // We can also return function types.
 //
