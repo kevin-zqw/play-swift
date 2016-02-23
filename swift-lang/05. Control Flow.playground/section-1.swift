@@ -21,6 +21,25 @@ for index in 1...5
 	// index = 99
 }
 
+var plusResult: String = ""
+for item in "Hello Swift".characters {
+    plusResult.append(item)
+}
+print(plusResult)
+
+for (index, character) in "Hello Swift".characters.enumerate() {
+    print(index, character)
+}
+
+let testDict = ["Hello": 8, "ant": 3]
+for (_, value) in testDict {
+    print(value)
+}
+
+for var i = 0; i < 3; ++i {
+    print(i)
+}
+
 // The constant 'index' from the previous loop is scoped only to the loop. As a result, you cannot
 // access it beyond the loop. The following line will not compile:
 //
@@ -33,6 +52,28 @@ for index in 1 ..< 5
 {
 	"This will print 4 times"
 }
+
+for _ in 1...5 {
+    print("hi")
+}
+
+for var item in 1...5 {
+    item++
+    print(item)
+}
+
+print("")
+
+var end = 5
+while end < 10 {
+    ++end
+    
+    print(end)
+}
+
+repeat {
+ print("at least once:", end)
+} while end < 5
 
 // Apple's "Swift Programming Language" book states the following, which I find in practice to be
 // incorrect:
@@ -59,7 +100,7 @@ indx
 // We can use an underscore if you don't need access to the loop constant:
 for _ in 1...10
 {
-	println("do something")
+	print("do something")
 }
 
 // We can iterate over arrays
@@ -78,7 +119,7 @@ for (animalName, legs) in numberOfLegs
 }
 
 // We can iterate over characters in a String
-for character in "Hello"
+for character in "Hello".characters
 {
 	character
 }
@@ -119,7 +160,7 @@ while index > 0
 // Do-While loops also resemble their C-like language counterparts. They perform the condition
 // after each iteration through the loop. As a result, they always execute the code inside the
 // loop at least once:
-do
+repeat
 {
 	++index
 } while (index < 3)
@@ -169,6 +210,10 @@ switch someCharacter
 	default:
 		"not a vowel or consonant"
 }
+
+// Every switch statement must be exhaustive, that is, every possible value of the type being considered must be matched by one of the switch cases. Use default to catch all other cases
+
+// Switch will not implicit fallthrough, use fallthrough if you really need it
 
 // Each case clause must have a statement of some kind. A comment will not suffice.
 //
@@ -231,6 +276,20 @@ switch somePoint
 	// Everything else
 	default:
 		"Outisde the 2x2 box"
+}
+
+let myPoint = (3, 5)
+switch myPoint {
+case (0, 0):
+    print("0, 0")
+case (_, 0):
+    print("x-axis")
+case (0, _):
+    print("y-axis")
+case (-2...2, -2...2):
+    print("inside")
+default:
+    print("outside")
 }
 
 // Value bindings in switch statements
@@ -344,10 +403,14 @@ switch integerToDescribe
 	case 2, 3, 5, 7, 11, 13, 17, 19:
 		integerDescription += " a prime number, and also"
 		fallthrough
+    
+case 120000:
+    integerDescription += " fuck"
 	
 	default:
 		integerDescription += " an integer."
 }
+integerDescription
 
 // Continue and Break statements have been extended in Swift to allow each to specify which
 // switch or loop construct to break out of, or continue to.
@@ -358,7 +421,7 @@ switch integerToDescribe
 var result = ""
 nameLoop: for name in names
 {
-	characterLoop: for character in name
+	characterLoop: for character in name.characters
 	{
 		theSwitch: switch character
 		{
@@ -377,7 +440,7 @@ result
 result = ""
 nameLoop: for name in names
 {
-	characterLoop: for character in name
+	characterLoop: for character in name.characters
 	{
 		theSwitch: switch character
 		{
@@ -397,7 +460,7 @@ result
 result = ""
 nameLoop: for name in names
 {
-	characterLoop: for character in name
+	characterLoop: for character in name.characters
 	{
 		theSwitch: switch character
 		{
@@ -411,3 +474,46 @@ nameLoop: for name in names
 	}
 }
 result
+
+
+// Early Exit, Use guard to ensure some condition is met, if not, it will execute the else, guard must provide a else
+func greet(person: [String: String]) {
+    guard let name = person["name"] else {
+        print("no name")
+        // You can't access name in guard body
+        return
+    }
+    
+    print("name:", name)
+}
+
+greet(["name": "Kevin"])
+
+// Check API Availability
+// Use iOS, OSX, watchOS for the platform names, you can specify minor version numbers like iOS 8.3 and OSX v10.10.3
+// The last * is required and specifies that on any other platform, the body of the if executes on the minimum deployment target specified by your target.
+// General form: if #available(platformName version, ..., *) {}
+if #available(iOS 9, OSX 10.10, *) {
+    print("iOS 9, OSX 10.10")
+} else {
+    print("Old system")
+}
+
+// if you iOS version under 9, you can't use useStackView function
+@available(iOS 9, *)
+func useStackView() {
+    // use UIStackView
+}
+
+// if iOS version under 9, this function will return and do nothing
+private func somethingNew() {
+    guard #available(iOS 9, *) else { return }
+    
+    // do something on iOS 9
+    let a = 5
+    print(a)
+}
+
+// check methods
+// someOptionalMethod?(someArgument)
+
