@@ -369,6 +369,13 @@ func doDoMul(doMulFunc: (Int, Int) -> Int, a: Int, b: Int) -> Int
 // function:
 doDoMul(doMul, a: 5, b: 5)
 
+typealias MyFunction = () -> Void
+func ff() -> Void {
+    
+}
+
+let af: MyFunction = ff
+
 // We can also return function types.
 //
 // The syntax looks a little wird because of the two sets of arrows. To read this, understand that
@@ -426,3 +433,5 @@ let returnFive = getReturnFive()
 
 // Here we call the nested function:
 returnFive()
+
+// Nested function
