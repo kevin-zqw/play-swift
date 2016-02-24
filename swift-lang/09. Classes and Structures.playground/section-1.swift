@@ -18,6 +18,8 @@
 // * Reference counting allows more than one reference to a class instance.
 // ------------------------------------------------------------------------------------------------
 
+// Classes are reference, and Struct is always by value
+
 // First, let's create a basic structure with a couple of simple properties.
 //
 // Our structure must have all of its properties initialized, either with default values or through
