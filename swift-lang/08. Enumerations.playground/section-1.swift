@@ -33,6 +33,22 @@ enum Planet
 	case Neptune
 }
 
+enum Sex {
+    case Male, Female
+}
+
+var mySex = Sex.Male
+
+// You can use shorter dot syntax
+mySex = .Female
+
+switch mySex {
+case .Male:
+    print("a man")
+case .Female:
+    print("a women")
+}
+
 // You can also combine members onto a single line if you prefer, or mix them up. This has no
 // effect on the enumeration itself.
 enum CompassPoint
@@ -77,6 +93,29 @@ enum Barcode
 	case QRCode(String)      // QRCode with associated value type of String
 }
 
+enum MyBarcode {
+    case UPCA(Int, Int, Int)
+    case QRCode(String)
+}
+
+let code = MyBarcode.QRCode("hello")
+let simpleCode = MyBarcode.UPCA(1, 1, 1)
+
+switch simpleCode {
+case .UPCA(let a, let b, let c):
+    print("upca \(a) \(b) \(c)")
+case .QRCode(let code):
+    print("QRCode: \(code)")
+}
+
+// case all constants, you can use one let
+switch simpleCode {
+case let .UPCA(a, b, c):
+    print("upca \(a) \(b) \(c)")
+case let .QRCode(code):
+    print("QRCode: \(code)")
+}
+
 // Let's specify a UPCA code (letting the compiler infer the enum type of Barcode):
 var productBarcode = Barcode.UPCA(0, 8590951226, 3)
 
@@ -118,6 +157,29 @@ enum StatusCode: Int
 	case YetAnotherResult // Unspecified values are auto-incremented from the previous value
 }
 
+enum ASCIICharacter: Character {
+    case Tab = "\t"
+    case LineFeed = "\n"
+    case CarriageReturn = "\r"
+}
+
+// String and Integer will get implicit raw value if you specified
+enum ImplicitRawValueInt: Int {
+    case AA // raw value 0
+    case BB // raw value 1
+    case CC // raw value 2
+    case DD // raw value 3
+}
+
+enum ImplicitRawValueString: String {
+    case SS // raw value "SS"
+    case BB // raw value "BB"
+    case AA // raw value "AA"
+}
+
+// Raw values can be strings, characters, or any of the integer or floating-point number types
+// Each raw value must be unique within its enumeration declaration
+
 // We can get the raw value of an enumeration value with the rawValue member:
 StatusCode.OtherResult.rawValue
 
@@ -134,6 +196,8 @@ enum ASCIIControlCharacter: Character
 	// case VerticalTab
 }
 
+print(StatusCode.Error.rawValue)
+
 // Alternatively, we could also use Strings
 enum FamilyPet: String
 {
@@ -144,6 +208,9 @@ enum FamilyPet: String
 
 // And we can get their raw value as well:
 FamilyPet.Ferret.rawValue
+
+// If you define an enumeration with a raw-value type, the enumeration automcatically receives an initializer that takes a value of the raw values's type(as a parameter called rawValue) and returns either an enumeration case or nil
+let myEnum = ASCIICharacter(rawValue: "A")
 
 // We can also generate the enumeration value from the raw value. Note that this is an optional
 // because not all raw values will have a matching enumeration:
@@ -157,4 +224,13 @@ else { "No pet :(" }
 pet = FamilyPet(rawValue: "Snake")
 if pet != .None { "We have a pet" }
 else { "No pet :(" }
+
+// Use indirect to indicate that an enumeration case is recursive
+enum ArithmeticExpression {
+    case Number(Int)
+    indirect case Addition(ArithmeticExpression)
+    indirect case Multiplication(ArithmeticExpression)
+}
+
+// Arecursive function is a straightforward way to work with data that has a recursive structure.
 
