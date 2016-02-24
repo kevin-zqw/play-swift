@@ -33,10 +33,29 @@
 // special attention to the curly braces that encapsulate the closure and the parenthesis just
 // outside of those curly braces:
 let names = ["Chris", "Alex", "Ewa", "Barry", "Daniella"]
-var reversed = [String]()
+var reversed = names.sort({
+    (s1: String, s2: String) -> Bool in
+        return s1 > s2
+})
+
 reversed = names.sort({
     (s1: String, s2: String) -> Bool in
         return s1 > s2
+})
+
+/* Closure expression syntax
+{ (parameters) -> return type in
+    statements
+}
+*/
+
+reversed = names.sort({(s1: String, s2: String) -> Bool in
+    return s1 > s2
+})
+
+reversed = names.sort({
+    s1, s2 in
+    s1 > s2
 })
 
 // ------------------------------------------------------------------------------------------------
@@ -97,6 +116,10 @@ reversed = names.sort({ $0 > $1 })
 //
 // Here's what that looks like:
 reversed = names.sort(>)
+
+var mapped = names.map {
+    str in str.characters.count
+}
 
 // If you want to just sort a mutable copy of an array (in place) you can use the sort() method
 var mutableCopyOfNames = names
@@ -203,3 +226,22 @@ anotherIncrementBy10() // returns 10
 
 // Our first incrementor is still using its own context:
 incrementBy10() // returns 50
+
+// Nonescaping Closures
+// Use @noescape to mark your closure will not escape from function
+func myAdder(@noescape adder: (a: Int, b: Int) -> Int) -> Int {
+    return adder(a: 1, b: 2)
+}
+
+// Autoclosures
+func serveCustomer(@autoclosure customerProvider: () -> String) {
+    print("Now serving \(customerProvider())!")
+}
+
+// Now you use pass a statement to this function
+var tempArray = ["1", "kevin", "hello"]
+serveCustomer(tempArray.removeLast())
+
+// @autoclosure attribute implies the @noescape attribute,if you want to escape, use:
+// @autoclosure(escaping)
+
