@@ -143,5 +143,21 @@ constantVideoMode === variableVideoMode
 
 // Structures and Enumerations are Value Types
 // Swift basic types - integers, floating-point, numbers, booleans, strings, arrays, dictionaries are value types, and are implemented as structures behind the scenes.
+// Value Types were always copied when you assign it to a variable or passed to a function
+
+// Classes are Reference Types
+
+// Identical to (===)
+// Not Identical to (!==)
+
+// Struct
+// * Simple data values
+// * Values need be copied rather than referenced
+// * Structure's properties are Struct
+// * Structure does not need to inherit from another existing type
+
+// String, Array, Dictionary are structures and will be copied
+// This is different from Foundation: NSString, NSArray, NSDictionary are classes and pass by references
+
 
 
