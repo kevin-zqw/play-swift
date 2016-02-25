@@ -4,6 +4,8 @@
 // * Properties store values in classes, structures and enumerations.
 // ------------------------------------------------------------------------------------------------
 
+// Properties are very important
+
 // Here's a structure with a couple simple stored properties:
 struct FixedLengthRange
 {
