@@ -112,6 +112,9 @@ constantVideoMode.frameRate = 24
 //
 // constantVideoMode = VideoMode
 
+// Struct will have a default Memberwise Initializer, you can use it to initialize the member properties of new structure installs
+// Class do not have Memberwise initializer
+
 // ------------------------------------------------------------------------------------------------
 // Memberwise Initializers for Structure Types
 //
@@ -137,3 +140,8 @@ constantVideoMode === variableVideoMode
 // defined an equality operator:
 //
 // constantVideoMode == variableVideoMode
+
+// Structures and Enumerations are Value Types
+// Swift basic types - integers, floating-point, numbers, booleans, strings, arrays, dictionaries are value types, and are implemented as structures behind the scenes.
+
+
