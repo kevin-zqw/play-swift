@@ -227,6 +227,10 @@ class StepCounter
 	}
 }
 
+// Even if the new value is the same as the property's current value, Observers will be called anyway.
+
+// Any stored properties except lazy stored properties can add observers.
+
 // Let's create an instance of StepCounter so we can try out our observer
 let stepCounter = StepCounter()
 
@@ -261,6 +265,11 @@ class StepCounterShorterWithModify
 var stepper = StepCounterShorterWithModify()
 stepper.totalSteps = 345
 stepper.totalSteps // This reports totalSteps is now set to 89
+
+// Global and Local Variables can also be stored variables or computed variables, and define observers for stored variables, in either a global or local scope.
+// Global constans and variables are always computed lazily, but they do not need marked with lazy modifier.
+// Local constants and variables are never computed lazily.
+
 
 // ------------------------------------------------------------------------------------------------
 // Type Properties
