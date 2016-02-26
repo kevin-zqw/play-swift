@@ -13,6 +13,9 @@ struct FixedLengthRange
 	let length: Int
 }
 
+// Stored properties: Classes, Structures
+// Computed properties: Classes, Structures, Enumerations
+
 // Structures must have all of their properties initialized upon instantiation.
 //
 // This won't compile since the struct includes properties that havn't been initialized with
@@ -24,6 +27,12 @@ struct FixedLengthRange
 // that this will initialize a constant property and a variable property inside the struct:
 var rangeOfThreeItems = FixedLengthRange(firstValue: 0, length: 3)
 rangeOfThreeItems.firstValue = 6
+
+// Constant structure instance can't modify instance's properties, even if they were declared as variable properties:
+let rangeOfFourItems = FixedLengthRange(firstValue: 1, length: 4)
+
+// Classes were different, constant object can modify variables properties.
+
 
 // ------------------------------------------------------------------------------------------------
 // Lazy Stored Properties
@@ -185,6 +194,8 @@ cube.volume
 // The following line of code will not compile:
 //
 // cube.volume = 8.0
+
+// willSet and DidSet
 
 // ------------------------------------------------------------------------------------------------
 // Property Observers
