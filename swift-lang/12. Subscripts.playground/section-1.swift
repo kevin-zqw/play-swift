@@ -40,6 +40,11 @@ threeTimesTable[4.0]
 // parameters.
 //
 // Here's a more complex example:
+
+// Subscripts cannot use in-out parameters or provide default paraemter values.
+
+// Subscripts can overloading, and use any paramters type and variadic parameters.
+
 struct Matrix
 {
 	let rows: Int
