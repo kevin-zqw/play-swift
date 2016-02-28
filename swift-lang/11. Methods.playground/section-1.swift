@@ -134,6 +134,10 @@ struct Point2
 	}
 }
 
+// Only struct or enum need mutating keyword
+
+// You can't call mutating methods on contants structure value, because contant's properties cannot be changed.
+
 // We'll create a constant Point2...
 let fixedPoint = Point2(x: 3)
 
@@ -155,6 +159,8 @@ struct Point3
 		self = Point3(x: 3)
 	}
 }
+
+// Assigning to self within a mutating method, will return a entirely new instance, and this new instance will replace the old one when this mutating method ends.
 
 // Assigning to 'self' in an enumeration is used to change to a different member of the same
 // enumeration:
