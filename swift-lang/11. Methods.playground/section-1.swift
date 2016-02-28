@@ -80,7 +80,7 @@ class Counter
 	// Two parameters. Using the external parameter shorthand ("#") to force caller to use
 	// external parameter name on first parameter and defaulting to shared local/external names
 	// for the rest.
-	func addTwiceWithExternalSpecified2(#first: Int, second: Int)
+	func addTwiceWithExternalSpecified2(first first: Int, second: Int)
 	{
 		count += first
 		count += second
