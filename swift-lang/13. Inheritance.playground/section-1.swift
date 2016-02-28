@@ -53,6 +53,8 @@ class Tandem: Bicycle
 	}
 }
 
+// init methods need override also
+
 // Here, we'll create a car that includes a new description by overriding the superclass' instance
 // method
 class Car: Vehicle
@@ -162,3 +164,6 @@ final class AnotherAutomaticCar: Car
 		didSet { gear = Int(speed / 10.0) + 1 }
 	}
 }
+
+// Use final to prevent a method, property, or subscript from being overridden.
+
