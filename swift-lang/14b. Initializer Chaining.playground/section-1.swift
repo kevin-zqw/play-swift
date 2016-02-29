@@ -43,9 +43,22 @@ class Food
 	}
 }
 
+// Initializer Delegation for Class Types
+// Rule 1
+// A designated initializer must call a designated initializer from its immediate superclass
+
+// Rule 2
+// A convenience initializer must call another initializer from the same class
+
+// Rule 3
+// A Convenience initializer must ultimately call a designated initializer.
+
+
 // Here we make use of our two initializers
 let namedMeat = Food(name: "Bacon")
 let mysteryMeat = Food()
+
+// Two-Phase Initialization
 
 // ------------------------------------------------------------------------------------------------
 // Two-Phase Initialization
@@ -100,6 +113,22 @@ class RecipeIngredient: Food
 		self.init(name: name, quantity: 1)
 	}
 }
+
+// Safety check 1
+// A designated initializer must ensure that all of the properties introduced by its class are initialized before it delegates up to a superclass initializer.
+
+// Safety check 2
+// A designated initializer must delegate up to a superclass initializer before assigning a value to an inherited property. If it doesn't, the new value the designated initializer assigns will be overwritten by the superclass as part of its own initialization.
+
+// Safety check 3
+// A convenience initializer must delegate to another initializer before assigning a value to any property(including properties defined by the same class). If it doesn't, the new value the convenience initializer assigns will be overwritten by its own class's designated initializer.
+
+// Safety check 4
+// An initializer cannot call any instance methods, read the values of any instance properties, or refer to self as a value until after the first phase of initialization is complete.
+
+// Phase 1
+    // A designated or convenience initializer is called on a class
+    // Memory f
 
 // Now we can call our various initializers to see them in action:
 let oneMysteryItem = RecipeIngredient()
