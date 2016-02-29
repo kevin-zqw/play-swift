@@ -135,6 +135,19 @@ let oneMysteryItem = RecipeIngredient()
 let oneBacon = RecipeIngredient(name: "Bacon")
 let sixEggs = RecipeIngredient(name: "Eggs", quantity: 6)
 
+// Initializer Inheritance and Overriding
+// Swift subclasses do not inherit their superclass initializers by default.
+// You must write override modifier before the subclass's initializer if you are override superclass's initializer. Swift will check errors.
+// You do nt write override modifier when you write a subclass initializer that matches a superclass convenience initializer.
+
+// Automatic Initializer Inheritance
+    // Rule 1
+    // If your subclass don't define any designated initializers, it automatically inherits all of its superclass designated initializers.
+    // If your subclass provides an implementation of all of its superclass designated initializers-either by inheriting them as per rule 1, or by providing a custom implementation as part of its definition-then it automatically inherits all of the superclass convenience initializers.
+
+// These rules apply even if your subclass adds further convenience initializers.
+// A subclass can implement a superclass designated initializer as a subclass convenience intializer as part of satisfying rule 2.
+
 // ------------------------------------------------------------------------------------------------
 // Inheriting a full set of the super's initializers
 //
@@ -221,3 +234,5 @@ struct CheckerBoard
 var board = CheckerBoard()
 board.squareIsBlackAtRow(1, column: 1) // Should be false
 board.squareIsBlackAtRow(1, column: 2) // Should be true
+
+// Failable Initializers
