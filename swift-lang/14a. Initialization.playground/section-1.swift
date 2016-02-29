@@ -25,6 +25,10 @@ struct Fahrenheit
 	}
 }
 
+// Classes and structures must set all of their stored properties to an appropriate initial value by the time an instance of that class or structure is created.
+
+// If a property always takes the same initial value, provide a default value rather than setting a value within an initializer. Default property initial value makes for shorter, clearer code and enables you to infer the type of the property from its default value. The default value also makes it easier for you to take advantage of default initializers and initializer inheritance.
+
 // Since the class can fully initialize itself, we can safely instantiate it with no error:
 var f = Fahrenheit()
 
@@ -72,17 +76,19 @@ struct Color
 	// This initializer will make use of automatically generated exernal names
 	init(red: Double, green: Double, blue: Double)
 	{
-		self.red = red
-		self.green = green
-		self.blue = blue
+        // constants can't be set again
+//		self.red = red
+//		self.green = green
+//		self.blue = blue
 	}
 	
 	// This initializer opts out by explicitly declaring external names with "_"
 	init(_ red: Double, _ blue: Double)
 	{
-		self.red = red
-		self.green = 0
-		self.blue = blue
+        // constants can't be set again
+//		self.red = red
+//		self.green = 0
+//		self.blue = blue
 	}
 }
 
@@ -122,9 +128,8 @@ class SurveyQuestion2
 	
 	init(text: String)
 	{
-		// Initializing the constant, 'text', even though it has a default value, we can modify
-		// that default value here
-		self.text = text
+		// This won't compile, because constant can only be set once
+//		self.text = text
 	}
 	
 	init()
@@ -165,6 +170,11 @@ class ShoppingListItem
 	// No init(...) initializer
 }
 
+// Default Initializer: All properties have default values && does not provide at least one initializer
+
+// Struct automatically receive a memberwise initializer if they do not define any of their own custom initializers.
+// Unlike a default initializer, the structure receives a memberwise initializer even if it has stored properties that do not have default values.
+
 // ------------------------------------------------------------------------------------------------
 // Memberwise Initializers for Structure Types
 //
@@ -193,6 +203,13 @@ let twoByTwo = Size(width: 2.0, height: 2.0)
 // initializer from calculations based on the a center point.
 //
 // This concept is further extended in "Initializer Chaining", covered later.
+
+// Values type(structure, enums) can't inheritance, so their initializer delegation is simple.
+// You can only call self.init in another init methods.
+
+// If you want your custom value type to be initializable with the default initializer and memberwise initializer, and also with your own custom initializers, write your custom initializers in an extension rather than as part of the value type's original implementation.
+// But don't do it unless you have to
+
 struct Point
 {
 	var x = 0.0
