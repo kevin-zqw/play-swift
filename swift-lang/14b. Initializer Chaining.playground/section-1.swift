@@ -176,6 +176,38 @@ var breakfastList = [
 	ShoppingListItem(name: "Eggs", quantity: 6),
 ]
 
+// Failable Initializers: init?
+// You cannot define a failable and a nonfailable initializer with the same parameter types and names
+// Use return nil within a failable initializer to indicate a point at which initialization failure can be triggered. (You do not use return to indicate initialization success!)
+struct AnimalMayFail {
+    let species: String
+    
+    init?(species: String) {
+        if species.isEmpty {
+            return nil
+        }
+        
+        self.species = species
+    }
+}
+
+// If you delegate to another initializer that causes initialization to fail, the entire initialization process fails i
+
+let failAnimal = AnimalMayFail(species: "")
+
+// Write required modifier before the definition of a class initializer to indicate that every subclass of the class must implement that initializer:
+class RequiredSomeClass {
+    // subclass must implement this initializer
+    required init() {
+    }
+}
+// Subclass must also write the required modifier before the initializers, You do not write override modifier when overriding a required designated initializer
+class RequiredSubClass {
+    required init() {
+        
+    }
+}
+
 // ------------------------------------------------------------------------------------------------
 // For individual properties, we can set their default value with a closure or function instead
 // of just a literal value.
@@ -235,4 +267,3 @@ var board = CheckerBoard()
 board.squareIsBlackAtRow(1, column: 1) // Should be false
 board.squareIsBlackAtRow(1, column: 2) // Should be true
 
-// Failable Initializers
