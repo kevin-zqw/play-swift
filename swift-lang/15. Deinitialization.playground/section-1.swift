@@ -13,6 +13,10 @@
 //   when a class is deallocated.
 // ------------------------------------------------------------------------------------------------
 
+// Superclass's deinitializer is called before the subclass'.
+// Swift uses ARC to manage memory for you, so you don't have to free memory manually,
+// Deinitializer was used to free other types of resources.
+
 // Let's create a couple classes to work with...
 struct Bank
 {
