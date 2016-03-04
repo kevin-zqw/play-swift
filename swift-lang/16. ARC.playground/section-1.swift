@@ -369,3 +369,6 @@ class FixedHTMLElement
 
 // Playgrounds do not allow us to test/prove this, so feel free to plug this into a compiled
 // application to see it in action.
+
+// ARC and memory are important, although we won't use them explictly very often.
+
