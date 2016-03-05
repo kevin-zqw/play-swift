@@ -89,3 +89,6 @@ person
 //
 // This line could be read as: optional person's second optional music preference's favorite song's
 // optional artist's name.
+
+// Optional chaining is handy and safe, we'll use it a lot.
+
