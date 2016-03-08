@@ -15,13 +15,15 @@ enum VendingMachineError: ErrorType {
     case OutOfStock
 }
 
+// function must marked with throws to be able to throw a error
 func buyStock() throws {
     throw VendingMachineError.InsufficinetFunds(coinsNeeded: 5)
 }
-
-try buyStock()
 
 // throws go before the return type
 func canThrowErrors() throws -> Int {
     return 5;
 }
+
+// Handle Errors
+try buyStock()
