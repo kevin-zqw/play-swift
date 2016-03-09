@@ -94,6 +94,8 @@ for item in library
 	}
 }
 
+// Use protocal and Duck type
+
 // ------------------------------------------------------------------------------------------------
 // Type Casting for Any and AnyObject
 //
@@ -122,12 +124,12 @@ let someObjects: [AnyObject] =
 // Let's see how we would use the someObjects array:
 for object: AnyObject in someObjects
 {
-	let movie = object as Movie
+	let movie = object as! Movie
 	"Movie: '\(movie.name)' was directed by \(movie.director)"
 }
 
 // Alternatively, we can downcast the array itself rather than each item:
-var someMovies = someObjects as [Movie]
+var someMovies = someObjects as! [Movie]
 for movie in someMovies
 {
 	"Movie: '\(movie.name)' was directed by \(movie.director)"
@@ -135,7 +137,7 @@ for movie in someMovies
 
 // Finally, we can avoid the additional local variable and performt he downcast right inside
 // the loop structure:
-for movie in someObjects as [Movie]
+for movie in someObjects as! [Movie]
 {
 	"Movie: '\(movie.name)' was directed by \(movie.director)"
 }
@@ -154,6 +156,8 @@ things.append(3.14159)
 things.append("Hello")
 things.append((3.0, 5.0))
 things.append(Movie(name: "Ghostbusters", director: "Ivan Reitman"))
+
+// Avoid Any and AnyObject if you can
 
 // We can now use a switch statement with a mix of "is" and "as" operators to parse through the
 // things array and get information from it.
