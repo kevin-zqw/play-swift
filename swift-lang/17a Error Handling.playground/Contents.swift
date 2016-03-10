@@ -27,3 +27,5 @@ func canThrowErrors() throws -> Int {
 
 // Handle Errors
 try buyStock()
+
+// try catch finally

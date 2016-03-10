@@ -85,3 +85,6 @@ theAceOfSpades.description
 
 // To access the nested type, we can drill down into the type using type names:
 let heartsSymbol = String( BlackjackCard.Suit.Hearts.rawValue )
+
+// How to set Nested Types's accessibility?
+
