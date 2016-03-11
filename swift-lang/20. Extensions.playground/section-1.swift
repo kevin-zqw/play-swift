@@ -15,7 +15,7 @@
 //   o Provide new convenience initializers
 //   o Define subscripts
 //   o Define and use new nested types
-//   o Make an existing type conform to a protocol
+//   o Make an existing type conform to a protocol (most used in this case)
 //
 // * Extensions do not support adding stored properties or property observers to a type.
 //
@@ -29,6 +29,19 @@ extension Int
 {
 	// ... code here
 }
+
+extension Int {
+    var myMax: Int {
+        return Int.max
+    }
+}
+
+// Extensions can add new computed properties, but then cannot add sotred properties, 
+// or add property observers to existing properties.
+
+// Extensions can add new convenience initializers to a class, 
+// but they cannot add new designated initializers or deinitializers to a class
+
 
 // ------------------------------------------------------------------------------------------------
 // Computed properties
@@ -108,7 +121,7 @@ extension Int
 {
 	func repititions(task: () -> ())
 	{
-		for i in 0..<self
+		for _ in 0..<self
 		{
 			task()
 		}
@@ -116,7 +129,7 @@ extension Int
 }
 
 // Let's call our new member using the shorthand syntax for trailing closures:
-3.repititions { println("hello") }
+3.repititions { print("hello") }
 
 // Instance methods can mutate the instance itself.
 //
