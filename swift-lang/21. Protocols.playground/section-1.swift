@@ -28,7 +28,7 @@
 //			// class definition goes here
 //		}
 // ------------------------------------------------------------------------------------------------
-
+import Foundation
 // ------------------------------------------------------------------------------------------------
 // Property requirements
 //
@@ -52,9 +52,24 @@ protocol someProtocolForProperties
 	// A read-only property
 	var doesNotNeedToBeSettable: Int { get }
 	
-	// A type property always uses 'class'. This is the case even if adopted by a structure or
+	// A type property always uses 'static'. This is the case even if adopted by a structure or
 	// enumeration which will use 'static' when conforming to the protocol's property.
-	class var someTypeProperty: Int { get set }
+    // class implement this property will use class keyword
+	static var someTypeProperty: Int { get set }
+}
+
+class MyBadClass: someProtocolForProperties {
+    var mustBeSettable: Int = 0
+    var doesNotNeedToBeSettable = 1
+    class var someTypeProperty: Int {
+        get {
+            return 3
+        }
+        
+        set {
+            
+        }
+    }
 }
 
 // Let's create a more practical protocol that we can actually conform to:
@@ -326,12 +341,12 @@ class Circle: HasArea
 {
 	let pi = 3.14159
 	var radius: Double
-	var area: Double { return pi * radius * radius }
+	@objc var area: Double { return pi * radius * radius }
 	init(radius: Double) { self.radius = radius }
 }
 class Country: HasArea
 {
-	var area: Double
+	@objc var area: Double
 	init(area: Double) { self.area = area }
 }
 class Animal
@@ -388,7 +403,7 @@ objects[2] is HasArea
 // In the class below, we'll see that checking to see if an instance conforms to a specific
 // requirement is similar to checking for (and accessing) optionals. We'll use optional chaining
 // for these optional reqirements:
-@objc class Counter
+@objc class Counter: NSObject
 {
 	var count = 0
 	var dataSource: CounterDataSource?
@@ -400,9 +415,74 @@ objects[2] is HasArea
 			count += amount
 		}
 		// If not, does it conform to the fixedIncrement variable requirement?
-		else if let amount = dataSource?.fixedIncrement?
+		else if let amount = dataSource?.fixedIncrement
 		{
 			count += amount
 		}
 	}
+}
+
+// Use class keyword to limit protocal adoption only to class types(and not structures or enumerations)
+// class keyword must before any inheritance list
+protocol SomeClassOnlyProtocolAAA: class, someProtocolForProperties {
+    
+}
+
+// Protocol Composition
+protocol NamedAA {
+    
+}
+protocol AgedAA {
+    
+}
+
+struct PersonAA: NamedAA, AgedAA {
+    
+}
+
+// celebrator must implements both protocols
+func wishHappyBrithday(celebrator: protocol<NamedAA, AgedAA>) {
+    
+}
+
+// Use is as? as! to check protocol conformance just like Type Casting
+
+
+// Use optional modifier to define optional requirements for protocols, and this method will be optional when you use it.
+// You must mark @objc attribute if you want to specify optional requirements.
+@objc protocol MyCounterDataSource {
+    optional func incrementForCount(count: Int) -> Int
+}
+
+var dataSource: MyCounterDataSource? = nil
+if let amount = dataSource?.incrementForCount?(5) {
+    
+}
+
+// Protocol extensions
+// By creating an extension on the protocol, all conforming types automatically gain this method implementation
+// without any aditional modification.
+extension RandomNumberGenerator {
+    func randomVar() -> Bool {
+        return true
+    }
+}
+
+// You can use protocol extensions to provide a default implementation to any method or property requirement of 
+// that protocol. If a conforming type provides its own implementation of a required mehtod or property, 
+// that implementation will be used instead of the one provided by the extension
+
+// Protocol requrements with default implementations provided by extensions are distinct form optional protocol
+// requirements. Although conforming types don't have to provide their own implementation of either, 
+// requirements with default implementations can be called without optional chaining.
+
+// Adding Constraints to Protocol Extensions
+// When you define a protocol extension, you can specify constraints that conforming types must satisfy 
+// before the methods and properties of the extension are available. You write these constraints after
+// the name of the protocol you're extending using a where clause
+
+// For instance, you can define an extension to the CollectionType protocol that applies to any collection
+// whose elements conform to the TextRepresentable protocol from the example above.
+extension CollectionType where Generator.Element: TextRepresentable {
+    
 }
