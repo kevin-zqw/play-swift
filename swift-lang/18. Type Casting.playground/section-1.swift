@@ -94,6 +94,9 @@ for item in library
 	}
 }
 
+// as? will return nil if downcast is not possible, and optional value when succeed
+// as! will trigger a runtime error if downcast is not possible.
+
 // Use protocal and Duck type
 
 // ------------------------------------------------------------------------------------------------
@@ -157,7 +160,11 @@ things.append("Hello")
 things.append((3.0, 5.0))
 things.append(Movie(name: "Ghostbusters", director: "Ivan Reitman"))
 
-// Avoid Any and AnyObject if you can
+// AnyObject can represent an instance of any class type.
+// Any can represent an instance of any type at all, including function types.
+
+// Avoid Any and AnyObject if you can, 
+// it is always better to be specific about the types you expect to work with in your code.
 
 // We can now use a switch statement with a mix of "is" and "as" operators to parse through the
 // things array and get information from it.
