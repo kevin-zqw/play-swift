@@ -9,6 +9,12 @@
 // * Generics can be applied to Functions, Structures, Classes and Enumerations.
 // ------------------------------------------------------------------------------------------------
 
+// Generics are one of the most powerful features of Swift, and much of the Swift standard library 
+// is built with generic code. In fact, you've been using generics throughout the Language Guide, 
+// even if you didn't realize it. For example, Swift's Array and Dictionary types are both 
+// generic collections.
+
+
 // The problem that Generics solve
 //
 // Consider the following function which can swap two Ints.
@@ -53,19 +59,19 @@ func swapTwoValues<T>(inout a: T, inout b: T)
 // Let's call it a few times to see it in action:
 var aInt = 3
 var bInt = 4
-swapTwoValues(&aInt, &bInt)
+swapTwoValues(&aInt, b: &bInt)
 aInt
 bInt
 
 var aDouble = 3.3
 var bDouble = 4.4
-swapTwoValues(&aDouble, &bDouble)
+swapTwoValues(&aDouble, b: &bDouble)
 aDouble
 bDouble
 
 var aString = "three"
 var bString = "four"
-swapTwoValues(&aString, &bString)
+swapTwoValues(&aString, b: &bString)
 aString
 bString
 
@@ -135,7 +141,7 @@ func doSomethingWithKeyValue<KeyType: Hashable, ValueType>(someKey: KeyType, som
 // criteria.
 func findIndex<T: Equatable>(array: [T], valueToFind: T) -> Int?
 {
-	for (index, value) in enumerate(array)
+	for (index, value) in array.enumerate()
 	{
 		if value == valueToFind
 		{
@@ -146,8 +152,8 @@ func findIndex<T: Equatable>(array: [T], valueToFind: T) -> Int?
 }
 
 // Let's try a few different inputs
-let doubleIndex = findIndex([3.14159, 0.1, 0.25], 9.3)
-let stringIndex = findIndex(["Mike", "Malcolm", "Andrea"], "Andrea")
+let doubleIndex = findIndex([3.14159, 0.1, 0.25], valueToFind: 9.3)
+let stringIndex = findIndex(["Mike", "Malcolm", "Andrea"], valueToFind: "Andrea")
 
 // ------------------------------------------------------------------------------------------------
 // Associated types
@@ -201,6 +207,15 @@ struct StackContainer<T> : Container
 	{
 		return items[i]
 	}
+}
+
+// When extending a generic type, you don't need to provide a type parameter list as part of the 
+// extensions's definition. Instead, the type parameter list from the original type definition is 
+// available with the body of the extionsion.
+extension Stack {
+    var myTopItem: T? {
+        return items.isEmpty ? nil : items[items.count - 1];
+    }
 }
 
 // The new StackContainer is now ready to go. You may notice that it does not include the
@@ -276,11 +291,11 @@ func allItemsMatch
 //
 // Let's test this out by passing the same value for each parameter which should definitely
 // return true:
-allItemsMatch(doubleStack, doubleStack)
+allItemsMatch(doubleStack, anotherContainer: doubleStack)
 
 // We can compare stringStack against an array of type String[] because we've extended Swift's
 // Array type to conform to our Container protocol:
-allItemsMatch(stringStack, ["Alpha", "Beta", "Theta"])
+allItemsMatch(stringStack, anotherContainer: ["Alpha", "Beta", "Theta"])
 
 // Finally, if we attempt to call allItemsMatch with a stringStack and a doubleStack, we would get
 // a compiler error because they do not store the same ItemType as defined in the function's
