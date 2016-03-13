@@ -304,3 +304,5 @@ allItemsMatch(stringStack, anotherContainer: ["Alpha", "Beta", "Theta"])
 // The following line of code does not compile:
 //
 // allItemsMatch(stringStack, doubleStack)
+
+// Generics is powerful and if we want to write a framework or library, we will use Generics
