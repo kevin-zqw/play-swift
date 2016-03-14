@@ -75,6 +75,11 @@ swapTwoValues(&aString, b: &bString)
 aString
 bString
 
+// Type Constraints
+func someFunction<T: Hashable>(someT: T) {
+    
+}
+
 // ------------------------------------------------------------------------------------------------
 // Generic Types
 //
@@ -168,6 +173,15 @@ protocol Container
 	mutating func append(item: ItemType)
 	var count: Int { get }
 	subscript(i: Int) -> ItemType { get }
+}
+
+protocol MyContainer {
+    // why not work?
+//    associatedtype ItemType
+    typealias ItemType
+    mutating func append(item: ItemType)
+    var count: Int { get }
+    subscript(i: Int) -> ItemType { get }
 }
 
 // In the example above, we declare a Type Alias called ItemType, but because we're declaring
@@ -276,6 +290,10 @@ func allItemsMatch
 	
 	// All items match, so return true
 	return true
+}
+
+func myGenericMatch<C1: Container, C2: Container where C1.ItemType == C2.ItemType, C1.ItemType: Equatable>(first: C1, _ second: C2) {
+    
 }
 
 // The function's type parameter list places the following restrictions on the types allowed:
