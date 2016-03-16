@@ -132,6 +132,12 @@ prefix func - (vector: Vector2D) -> Vector2D
 	return Vector2D(x: -vector.x, y: -vector.y)
 }
 
+// Not allowed
+//postfix func - (vector: Vector2D) -> Vector2D
+//{
+//    return Vector2D(x: -vector.x, y: -vector.y)
+//}
+
 // Check our work:
 c = -a
 
