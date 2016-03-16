@@ -81,8 +81,8 @@ var aZero: Int8 = someValue - someValue
 var overflowAdd: Int8 = someValue &+ someValue
 var underflowSub: Int8 = -someValue &- someValue
 var overflowMul: Int8 = someValue &* someValue
-var divByZero: Int8 = 100 &/ aZero
-var remainderDivByZero: Int8 = 100 &% aZero
+//var divByZero: Int8 = 100 &/ aZero
+//var remainderDivByZero: Int8 = 100 &% aZero
 
 // ------------------------------------------------------------------------------------------------
 // Operator Functions (a.k.a., Operator Overloading)
@@ -152,7 +152,7 @@ prefix func ++ (inout vector: Vector2D) -> Vector2D
 
 postfix func ++ (inout vector: Vector2D) -> Vector2D
 {
-	var previous = vector;
+	let previous = vector;
 	vector = vector + Vector2D(x: 1.0, y: 1.0)
 	return previous
 }
