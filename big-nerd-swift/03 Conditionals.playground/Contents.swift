@@ -17,6 +17,11 @@ if number == 5 {
 // You can omit the () around testing case
 // You must always provide {} for if, even if you have only one line code
 
-// Ternary Operator
+// Ternary Operator, use ternary operator for concise statements only
 // someBool ? trueStatement : falseStatement
+
+// Nesting ifs statement
+
+// if, else if, else
+
 
